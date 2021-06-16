@@ -1,4 +1,4 @@
-name: Release SDK
+name: "Release SDK"
 
 on:
   workflow_dispatch:
@@ -24,16 +24,15 @@ jobs:
           repository: mchuangatmp/mparticle-android-sdk-internal
           token: ${{ secrets.ANDROID_SDK_PAT }}
           ref: ci/semantic_release
-
-      # checking out the Kit submodules currently requires converting the ssh urls to https so
-      # we can use the personal access tokens
-      #        - name: "Checkout submodules"
-      #          run: |
-      #              git config --file .gitmodules --get-regexp url | while read url; do
-      #              git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.SSH_KEY }}:${{ secrets.SSH_KEY }}@github.com\//")
-      #            done
-      #            git submodule sync
-      #            git submodule update --init
+      - name: "Checkout submodules"
+        run: git submodule update --init --recursive
+#      - name: "Checkout submodules"
+#        run: |
+#            git config --file .gitmodules --get-regexp url | while read url; do
+#            git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.SSH_KEY }}:${{ secrets.SSH_KEY }}@github.com\//")
+#          done
+#          git submodule sync
+#          git submodule update --init
 #      - name: "Build and Test"
 #        # build and test core, then build and test kits
 #        run: |
