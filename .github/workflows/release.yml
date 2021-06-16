@@ -34,11 +34,11 @@ jobs:
       #            done
       #            git submodule sync
       #            git submodule update --init
-      - name: "Build and Test"
-        # build and test core, then build and test kits
-        run: |
-          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
-          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
+#      - name: "Build and Test"
+#        # build and test core, then build and test kits
+#        run: |
+#          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
+#          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
       - name: "Semantic Release --dry-run"
         if: ${{ github.event.inputs.dryRun == 'true'}}
         env:
