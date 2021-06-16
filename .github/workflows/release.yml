@@ -24,14 +24,16 @@ jobs:
           repository: mchuangatmp/mparticle-android-sdk-internal
           token: ${{ secrets.ANDROID_SDK_PAT }}
           ref: ci/semantic_release
-      - name: "Checkout submodules"
-        env:
-          GITHUB_TOKEN: ${{ secrets.ANDROID_SDK_PAT }}
-          GIT_AUTHOR_NAME: mparticle-bot
-          GIT_AUTHOR_EMAIL: developers@mparticle.com
-          GIT_COMMITTER_NAME: mparticle-bot
-          GIT_COMMITTER_EMAIL: developers@mparticle.com
-        run: git submodule update --init --recursive
+          submodules: recursive
+
+#      - name: "Checkout submodules"
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.ANDROID_SDK_PAT }}
+#          GIT_AUTHOR_NAME: mparticle-bot
+#          GIT_AUTHOR_EMAIL: developers@mparticle.com
+#          GIT_COMMITTER_NAME: mparticle-bot
+#          GIT_COMMITTER_EMAIL: developers@mparticle.com
+#        run: git submodule update --init --recursive
 #      - name: "Checkout submodules"
 #        run: |
 #            git config --file .gitmodules --get-regexp url | while read url; do
