@@ -25,27 +25,11 @@ jobs:
           token: ${{ secrets.ANDROID_SDK_PAT }}
           ref: ci/semantic_release
           submodules: recursive
-
-#      - name: "Checkout submodules"
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.ANDROID_SDK_PAT }}
-#          GIT_AUTHOR_NAME: mparticle-bot
-#          GIT_AUTHOR_EMAIL: developers@mparticle.com
-#          GIT_COMMITTER_NAME: mparticle-bot
-#          GIT_COMMITTER_EMAIL: developers@mparticle.com
-#        run: git submodule update --init --recursive
-#      - name: "Checkout submodules"
-#        run: |
-#            git config --file .gitmodules --get-regexp url | while read url; do
-#            git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/${{ secrets.SSH_KEY }}:${{ secrets.SSH_KEY }}@github.com\//")
-#          done
-#          git submodule sync
-#          git submodule update --init
-#      - name: "Build and Test"
-#        # build and test core, then build and test kits
-#        run: |
-#          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
-#          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
+      - name: "Build and Test"
+        # build and test core, then build and test kits
+        run: |
+          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
+          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
       - name: "Semantic Release --dry-run"
         if: ${{ github.event.inputs.dryRun == 'true'}}
         env:
