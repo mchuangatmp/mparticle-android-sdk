@@ -1,7 +1,7 @@
 module.exports = {
   branches: ["ci/semantic_release"],
   tagFormat: "v${version}",
-  repositoryUrl: "https://github.com/mchuangatmp/mparticle-android-sdk-internal",
+  repositoryUrl: "https://github.com/mchuangatmp/mparticle-android-sdk",
   plugins: [
     [
       "@semantic-release/commit-analyzer",
