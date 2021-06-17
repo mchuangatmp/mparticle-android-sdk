@@ -42,7 +42,7 @@ jobs:
         uses: asadmansr/android-test-report-action@v1.2.0
       - name: "Build Android Core"
         run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
-      - name: Update Kit references
+      - name: "Update Kit references"
         run: git submodule foreach "git fetch; git reset --hard origin/master";
       - name: "Test Kits"
         run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
