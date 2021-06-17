@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          repository: mParticle/mparticle-android-sdk-internal
+          repository: mchuangatmp/mparticle-android-sdk-internal
           token: ${{ secrets.ANDROID_SDK_PAT }}
           ref: development
           submodules: recursive
