@@ -1,0 +1,40 @@
+module.exports = {
+  branches: ["ci/semantic_release"],
+  tagFormat: "v${version}",
+  repositoryUrl: "https://github.com/mchuangatmp/mparticle-android-sdk-internal",
+  plugins: [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        preset: "angular",
+      },
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        preset: "angular",
+      },
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        changelogFile: "CHANGELOG.md",
+      },
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        prepareCmd: "sh ./scripts/release.sh ${nextRelease.version}",
+      },
+    ],
+    // ["@semantic-release/github"],
+    [
+      "@semantic-release/git",
+      {
+        assets: ["CHANGELOG.md", "build.gradle", "README.md"],
+        message:
+          "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
+      },
+    ],
+  ],
+};
