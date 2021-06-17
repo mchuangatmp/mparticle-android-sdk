@@ -25,11 +25,29 @@ jobs:
           token: ${{ secrets.ANDROID_SDK_PAT }}
           ref: ci/semantic_release
           submodules: recursive
-      - name: "Build and Test"
-        # build and test core, then build and test kits
-        run: |
-          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
-          ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
+      - name: "Run Instrumented Tests"
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew cAT
+      - name: "Archive Instrumented Test Results"
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: android-core/build/reports/androidTests/connected/**
+      - name: "Run Unit Tests"
+        run: ./gradlew test
+      - name: "Android Test Report"
+        uses: asadmansr/android-test-report-action@v1.2.0
+      - name: "Build Android Core"
+        run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
+      - name: Update Kit references
+        run: git submodule foreach "git fetch; git reset --hard origin/master";
+      - name: "Test Kits"
+        run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
+      - name: "Commit Kit Updates"
+        run: git add .; git commit -m "Update Submodules"
       - name: "Semantic Release --dry-run"
         if: ${{ github.event.inputs.dryRun == 'true'}}
         env:
