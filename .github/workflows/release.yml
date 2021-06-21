@@ -66,7 +66,7 @@ jobs:
       - name: "Test Kits"
         run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives -c settings-kits.gradle
       - name: "Commit Kit Updates"
-        run: git add .; git commit -m "Update Submodules"
+        run: git add .; git diff-index --quiet HEAD || git commit -m 'Update Submodules'
       - name: "Semantic Release --dry-run"
         if: ${{ github.event.inputs.dryRun == 'true'}}
         env:
