@@ -51,13 +51,13 @@ jobs:
       GIT_COMMITTER_NAME: mparticle-bot
       GIT_COMMITTER_EMAIL: developers@mparticle.com
     steps:
-      - name: "Checkout Branch"
+      - name: "Checkout Development Branch"
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          repository: mchuangatmp/mparticle-android-sdk
+          repository: mparticle/mparticle-android-sdk-internal
           token: ${{ secrets.ANDROID_SDK_PAT }}
-          ref: ci/semantic_release
+          ref: development
           submodules: recursive
       - name: "Build Android Core"
         run: ./gradlew -Ptarget_maven_repo=test -PisRelease=true cleanBuildCache clean testRelease uploadArchives
