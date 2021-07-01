@@ -3,7 +3,7 @@ on: [push, pull_request]
 jobs:
   instrumented-tests:
     timeout-minutes: 30
-    runs-on: macos-11
+    runs-on: macos-10.15
     steps:
       - name: Checkout Branch
         uses: actions/checkout@v2

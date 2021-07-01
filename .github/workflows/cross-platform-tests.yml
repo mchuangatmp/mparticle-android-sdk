@@ -4,7 +4,7 @@ on:
 jobs:
   cross-platform-tests:
     timeout-minutes: 30
-    runs-on: macos-11
+    runs-on: macos-10.15
     steps:
       - name: Checkout internal
         uses: actions/checkout@v2

@@ -1,5 +1,5 @@
 module.exports = {
-  branches: ["master"],
+  branches: ["development"],
   tagFormat: "v${version}",
   plugins: [
     [
@@ -26,7 +26,7 @@ module.exports = {
         prepareCmd: "sh ./scripts/release.sh ${nextRelease.version}",
       },
     ],
-    // ["@semantic-release/github"],
+    ["@semantic-release/github"],
     [
       "@semantic-release/git",
       {
