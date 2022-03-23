@@ -1,3 +1,11 @@
+## [5.36.3](https://github.com/mchuangatmp/mparticle-android-sdk/compare/v5.36.2...v5.36.3) (2022-03-23)
+
+
+### Bug Fixes
+
+* gpg test ([e8ca21d](https://github.com/mchuangatmp/mparticle-android-sdk/commit/e8ca21d653df593847b95e344892f31980786aff))
+* test commit ([e0704dd](https://github.com/mchuangatmp/mparticle-android-sdk/commit/e0704dd189cd5240d0c44e091d735ceb02fd20e6))
+
 ## [5.36.2](https://github.com/mParticle/mparticle-android-sdk/compare/v5.36.1...v5.36.2) (2022-03-09)
 
 
