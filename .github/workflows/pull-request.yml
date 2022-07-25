@@ -119,7 +119,7 @@ jobs:
   automerge-dependabot:
     name: "Save PR Number for Dependabot Automerge"
     needs: [ instrumented-tests, unit-tests, lint-checks, kotlin-lint-checks, kit-compatibility-test ]
-    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
+    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout PR branch"
